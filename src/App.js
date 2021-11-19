@@ -21,7 +21,7 @@ export default function App() {
         <Typography component="h2" variant="h6">
           Kalkulator wydatków
         </Typography>
-        <Paper elevation={2} sx={{ mt: 4 }}>
+        <Paper elevation={2} sx={{ mt: 4, p: 2 }}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               miejsce na formularz
