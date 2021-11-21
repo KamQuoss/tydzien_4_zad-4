@@ -7,6 +7,7 @@ import {
   CssBaseline
 } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
+import Form from "./components/Form/Form";
 
 const theme = createTheme();
 
@@ -24,10 +25,12 @@ export default function App() {
         <Paper elevation={2} sx={{ mt: 4, p: 2 }}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              miejsce na formularz
+              {/* formularz */}
+              <Form />
             </Grid>
             <Grid item xs={6}>
               Wydatki
+              {/* ten sam model wyświetlania różnice w szczegółach */}
             </Grid>
             <Grid item xs={6}>
               Przychody
