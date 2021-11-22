@@ -7,19 +7,41 @@ import CategoryField from "./CategoryField";
 import AddButton from "./AddButton";
 
 const Form = () => {
-  const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors }
+  } = useForm();
+  const onSubmit = (data) => {
+    reset();
+    console.log(data);
+  };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <TransactionTypeField
         label="Rodzaj transakcji"
         {...register("transaction")}
       />
+      {errors.transaction && <p>{errors.transaction.message}</p>}
       <OperationNameField
         label="Nazwa operacji"
-        {...register("operationName")}
+        {...register("operationName", {
+          required: true,
+          minLength: { value: 3, message: "Za krótka nazwa" },
+          maxLength: { value: 100, message: "Za długa nazwa" }
+        })}
       />
-      <AmountField label="Kwota" {...register("amount")} />
+      {errors.operationName && <p>{errors.operationName.message}</p>}
+
+      <AmountField
+        label="Kwota"
+        {...register("amount", {
+          min: { value: 0, message: "Wartość nie może być niższa niż zero" }
+        })}
+      />
+      {errors.amount && <p>{errors.amount.message}</p>}
       <CategoryField label="Kategoria" {...register("category")} />
       <AddButton />
     </form>
