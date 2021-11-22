@@ -1,14 +1,32 @@
 import React from "react";
 // income , expence
-const TransactionTypeField = () => {
-  return (
-    <fieldset>
-      <legend>Rodzaj ?</legend>
-      <input type="radio" id="income" name="transaction" value="income" />
-      <label htmlFor="income">przychód</label>
-      <input type="radio" id="expence" name="transaction" value="expence" />
-      <label htmlFor="expence">wydatek</label>
-    </fieldset>
-  );
-};
+const TransactionTypeField = React.forwardRef(
+  ({ label, onChange, onBlur, name }, ref) => {
+    return (
+      <fieldset>
+        <legend>{label}</legend>
+        <input
+          type="radio"
+          id="income"
+          value="income"
+          onChange={onChange}
+          onBlur={onBlur}
+          name={name}
+          ref={ref}
+        />
+        <label htmlFor="income">przychód</label>
+        <input
+          type="radio"
+          id="expence"
+          value="expence"
+          name={name}
+          onChange={onChange}
+          onBlur={onBlur}
+          ref={ref}
+        />
+        <label htmlFor="expence">wydatek</label>
+      </fieldset>
+    );
+  }
+);
 export default TransactionTypeField;
