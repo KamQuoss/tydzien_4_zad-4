@@ -7,12 +7,20 @@ import CategoryField from "./CategoryField";
 import AddButton from "./AddButton";
 
 const Form = () => {
+  const { register, handleSubmit } = useForm();
+  const onSubmit = (data) => console.log(data);
   return (
-    <form>
-      <TransactionTypeField />
-      <OperationNameField />
-      <AmountField />
-      <CategoryField />
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <TransactionTypeField
+        label="Rodzaj transakcji"
+        {...register("transaction")}
+      />
+      <OperationNameField
+        label="Nazwa operacji"
+        {...register("operationName")}
+      />
+      <AmountField label="Kwota" {...register("amount")} />
+      <CategoryField label="Kategoria" {...register("category")} />
       <AddButton />
     </form>
   );

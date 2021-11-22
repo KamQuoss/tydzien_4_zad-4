@@ -11,19 +11,21 @@ const incomeOptions = [
   { name: "other", value: "Inne" }
 ];
 
-const CategoryField = () => {
-  return (
-    <fieldset>
-      <legend>Kategoria</legend>
-      <select name="category">
-        {incomeOptions.map((option) => (
-          <option key={option.name} value={option.name}>
-            {option.value}
-          </option>
-        ))}
-      </select>
-    </fieldset>
-  );
-};
+const CategoryField = React.forwardRef(
+  ({ label, onChange, onBlur, name }, ref) => {
+    return (
+      <fieldset>
+        <legend>Kategoria</legend>
+        <select name={name} ref={ref} onChange={onChange} onBlur={onBlur}>
+          {incomeOptions.map((option) => (
+            <option key={option.name} value={option.name}>
+              {option.value}
+            </option>
+          ))}
+        </select>
+      </fieldset>
+    );
+  }
+);
 
 export default CategoryField;
