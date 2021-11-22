@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Paper,
   Container,
@@ -7,11 +8,30 @@ import {
   CssBaseline
 } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
+
 import Form from "./components/Form/Form";
 
 const theme = createTheme();
 
+const reducer = (state, action) => {
+  console.log("action", action);
+  switch (action.type) {
+    case "add":
+      return [...state, action.value];
+    case "remove":
+      return state.filter((item) => item.id !== action.value.id);
+    default:
+      return state;
+  }
+};
+
 export default function App() {
+  const [state, changeState] = React.useReducer(reducer, []);
+
+  React.useEffect(() => {
+    console.log("stan apki się zmienił", state);
+  }, [state]);
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -26,11 +46,25 @@ export default function App() {
           <Grid container spacing={2}>
             <Grid item xs={12}>
               {/* formularz */}
-              <Form />
+              <Form onItemAdd={changeState} />
             </Grid>
             <Grid item xs={6}>
-              Wydatki
-              {/* ten sam model wyświetlania różnice w szczegółach */}
+              Lista
+              {/* {state.map((item) => {
+                return (
+                  <div>
+                    {item.id}
+                    <button
+                      onClick={changeState({
+                        type: "add",
+                        value: { id: item.id }
+                      })}
+                    >
+                      usuń
+                    </button>
+                  </div>
+                );
+              })} */}
             </Grid>
             <Grid item xs={6}>
               Przychody
