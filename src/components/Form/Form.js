@@ -1,21 +1,24 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { default as UUID } from "node-uuid";
 import OperationNameField from "./OperationNameFiled";
 import TransactionTypeField from "./TransactionTypeField";
 import AmountField from "./AmountField";
 import CategoryField from "./CategoryField";
 import AddButton from "./AddButton";
 
-const Form = () => {
+const Form = ({ onItemAdd }) => {
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors }
   } = useForm();
+
   const onSubmit = (data) => {
     reset();
-    console.log(data);
+    onItemAdd({ type: "add", value: { id: UUID.v4(), ...data } });
+    // console.log(data);
   };
 
   return (
@@ -38,6 +41,7 @@ const Form = () => {
       <AmountField
         label="Kwota"
         {...register("amount", {
+          required: true,
           min: { value: 0, message: "Wartość nie może być niższa niż zero" }
         })}
       />
