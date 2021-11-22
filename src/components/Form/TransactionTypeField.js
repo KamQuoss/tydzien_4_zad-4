@@ -9,6 +9,7 @@ const TransactionTypeField = React.forwardRef(
           type="radio"
           id="income"
           value="income"
+          defaultChecked
           onChange={onChange}
           onBlur={onBlur}
           name={name}
