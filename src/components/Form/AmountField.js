@@ -8,6 +8,7 @@ const AmountField = React.forwardRef(
         <input
           type="number"
           min={0}
+          step="0.01"
           onChange={onChange}
           onBlur={onBlur}
           name={name}

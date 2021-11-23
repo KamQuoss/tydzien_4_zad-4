@@ -1,11 +1,15 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { default as UUID } from "node-uuid";
-import OperationNameField from "./OperationNameFiled";
-import TransactionTypeField from "./TransactionTypeField";
-import AmountField from "./AmountField";
-import CategoryField from "./CategoryField";
-import AddButton from "./AddButton";
+
+import { categoryOptions } from "../../utils/categoryOptions";
+import {
+  AddButton,
+  AmountField,
+  CategoryField,
+  OperationNameField,
+  TransactionTypeField
+} from "./index";
 
 const Form = ({ onItemAdd }) => {
   const {
@@ -18,7 +22,6 @@ const Form = ({ onItemAdd }) => {
   const onSubmit = (data) => {
     reset();
     onItemAdd({ type: "add", value: { id: UUID.v4(), ...data } });
-    // console.log(data);
   };
 
   return (
@@ -46,7 +49,11 @@ const Form = ({ onItemAdd }) => {
         })}
       />
       {errors.amount && <p>{errors.amount.message}</p>}
-      <CategoryField label="Kategoria" {...register("category")} />
+      <CategoryField
+        label="Kategoria"
+        options={categoryOptions}
+        {...register("category")}
+      />
       <AddButton />
     </form>
   );

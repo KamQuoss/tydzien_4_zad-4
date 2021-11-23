@@ -10,6 +10,7 @@ Zrób formularz dodawania, który posiada:
 - pole select z kategorią
 - przycisk dodawania
 
-Kategorie możesz przechowywać w tablicy i przekazywać do selecta. Powinniśmy mieć możliwość usunięcia każdej pozycji (zarówno przychód, jak i wydatek)
+Kategorie możesz przechowywać w tablicy i przekazywać do selecta. 
+Powinniśmy mieć możliwość usunięcia każdej pozycji (zarówno przychód, jak i wydatek)
 
 W widocznym miejscu aplikacja powinna pokazywać Twój budżet, czyli np. 1500zł albo -200zł i kolorować na zielono lub czerwono w zależności czy jest powyżej zera :)

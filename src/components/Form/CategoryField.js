@@ -1,23 +1,12 @@
 import React from "react";
 
-const incomeOptions = [
-  { name: "food", value: "Jedzenie" },
-  { name: "home", value: "Mieszkanie" },
-  { name: "transport", value: "Transport" },
-  { name: "heatlh", value: "Opieka zdrowotna" },
-  { name: "higene", value: "Higiena" },
-  { name: "clothes", value: "Ubrania" },
-  { name: "entertainment", value: "Rozrywka" },
-  { name: "other", value: "Inne" }
-];
-
 const CategoryField = React.forwardRef(
-  ({ label, onChange, onBlur, name }, ref) => {
+  ({ label, onChange, onBlur, name, options }, ref) => {
     return (
       <fieldset>
-        <legend>Kategoria</legend>
+        <legend>{label}</legend>
         <select name={name} ref={ref} onChange={onChange} onBlur={onBlur}>
-          {incomeOptions.map((option) => (
+          {options.map((option) => (
             <option key={option.name} value={option.name}>
               {option.value}
             </option>
