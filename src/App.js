@@ -15,8 +15,24 @@ import { Balance } from "./components/Balance/Balance";
 
 const theme = createTheme();
 
+const initialState = [
+  {
+    id: "1",
+    transaction: "income",
+    operationName: "test wydatków",
+    amount: "100",
+    category: "food"
+  },
+  {
+    id: "2",
+    transaction: "expence",
+    operationName: "test przychodów",
+    amount: "100",
+    category: "salary"
+  }
+];
+
 const reducer = (state, action) => {
-  console.log("action", action);
   switch (action.type) {
     case "add":
       return [...state, action.value];
@@ -28,11 +44,7 @@ const reducer = (state, action) => {
 };
 
 export default function App() {
-  const [state, changeState] = React.useReducer(reducer, []);
-
-  React.useEffect(() => {
-    console.log("stan apki się zmienił", state);
-  }, [state]);
+  const [state, changeState] = React.useReducer(reducer, initialState);
 
   return (
     <ThemeProvider theme={theme}>
