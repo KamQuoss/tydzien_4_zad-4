@@ -10,6 +10,8 @@ import {
 import { createTheme } from "@mui/material/styles";
 
 import Form from "./components/Form/Form";
+import { ItemList } from "./components/ItemList/ItemList";
+import { Balance } from "./components/Balance/Balance";
 
 const theme = createTheme();
 
@@ -45,29 +47,26 @@ export default function App() {
         <Paper elevation={2} sx={{ mt: 4, p: 2 }}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              {/* formularz */}
               <Form onItemAdd={changeState} />
             </Grid>
+            <Grid item xs={12}>
+              <Balance state={state} />
+            </Grid>
             <Grid item xs={6}>
-              Lista
-              {/* {state.map((item) => {
-                return (
-                  <div>
-                    {item.id}
-                    <button
-                      onClick={changeState({
-                        type: "add",
-                        value: { id: item.id }
-                      })}
-                    >
-                      usuń
-                    </button>
-                  </div>
-                );
-              })} */}
+              Wydatki
+              <ItemList
+                state={state}
+                operationType="income"
+                onItemRemove={changeState}
+              />
             </Grid>
             <Grid item xs={6}>
               Przychody
+              <ItemList
+                state={state}
+                operationType="expence"
+                onItemRemove={changeState}
+              />
             </Grid>
           </Grid>
         </Paper>
