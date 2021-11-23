@@ -9,8 +9,16 @@ export const Balance = ({ state }) => {
       : prev - parseFloat(curr.amount);
   }, 0);
   return (
-    <Box sx={{ border: "2px solid grey" }}>
-      Stan konta wynosi {toPLN(balance)}
+    <Box
+      sx={{
+        border: "2px solid grey",
+        padding: 2,
+        textAlign: "center",
+        backgroundColor:
+          balance > 0 ? "#B0E9D8" : balance < 0 ? "#F99E86" : "white"
+      }}
+    >
+      Stan konta: {toPLN(balance)}
     </Box>
   );
 };
