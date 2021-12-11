@@ -8,7 +8,6 @@ export const ItemList = ({ state, operationType, onItemRemove }) => (
         .filter((item) => item.transaction === operationType)
         .map((item) => (
           <Item
-            key={state.id}
             name={item.operationName}
             category={item.category}
             amount={item.amount}
