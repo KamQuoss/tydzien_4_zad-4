@@ -19,9 +19,13 @@ const Form = ({ onItemAdd }) => {
     formState: { errors }
   } = useForm();
 
+  const add = (data) => {
+    return { type: "add", value: { id: UUID.v4(), ...data } };
+  };
+
   const onSubmit = (data) => {
     reset();
-    onItemAdd({ type: "add", value: { id: UUID.v4(), ...data } });
+    onItemAdd(add(data));
   };
 
   return (
